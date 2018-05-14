@@ -164,6 +164,27 @@
 		}
 
 		function running(){
+			document.addEventListener("keydown", (event) => {
+			    switch (event.keyCode) {
+			    	case 39:
+			    		snake.dx = 0;
+			    		snake.dy = 1;
+			    		break;
+			    	case 37:
+			    		snake.dx = 0;
+			    		snake.dy = -1;
+			    		break;
+			    	case 38:
+			    		snake.dx = -1;
+			    		snake.dy = 0;
+			    		break;
+			    	case 40:
+			    		snake.dx = 1;
+			    		snake.dy = 0;
+			    		break;
+			    }
+			});
+
 			var time1 =  setInterval(loopSnake, 100);
 			function loopSnake() {
 				if (map[snake.head.next.pos_x][snake.head.next.pos_y] == '☼') {
@@ -175,7 +196,7 @@
 					clearInterval(time1);
 					setTimeout(function(){ alert("YOU LOSE... PRESS F5 TO PLAY AGAIN."); }, 5);
 				}
-				else if (snake.length == 13*13 - 1){
+				else if (snake.length == 1){
 
 					alert("Congratulation! YOU WIN.");
 					wish();
@@ -187,71 +208,57 @@
 			}
 		}
 
-		// function wish(){
-		// 	var line1 = "HAPPY BIRTHDAY TO YOU. I know this could be awkward, but I couldn't make it on your birthday."
-		// 	quoc.innerHTML = namepoint.innerHTML = point.innerHTML = '';
-		// 	var strlen = line1.length;
-		// 	var count = 0;
-		// 	output = '';
+		function wish(){
+
+			alert("Press SPACEBAR to continue...");
+			var line1 = "Hi Hello. HAPPY BIRTHDAY TO YOU. I know it sounds so awkward, but I couldn't make it on your birthday. This is still a prototype webgame page, so the graphics are too ugly, I know. Just to say, I wanna wish you a happy birthday, I wanna make everything normal as it used to be. I want us, to be friend, again. Of course it's up to your decision. Hope to see your reply soon. Best wishes, Q."
+			quoc.innerHTML = namepoint.innerHTML = point.innerHTML = '';
+			var strlen = line1.length;
+			var count = 0;
+			output = '';
 			
-		// 	while(line1[count] < 93){
-		// 		console.log(line1[count]);
-		// 		count++;
-		// 		// if (line1[count] == '.' || line1[count] == '?'){
-		// 		// 		output += line1[count];
-		// 		// 		output += '<br>';
-		// 		// 		output += '<br>';
-		// 		// 		count++;
-		// 		// 		rule.innerHTML = output;
-					
-		// 		// }
-		// 		// else if (line1[count] == ','){
-		// 		// 	output += line1[count];
-		// 		// 	output += '<br>';
-		// 		// 	output += '   ';
-		// 		// 	count++;
-		// 		// 	rule.innerHTML = output;
-		// 		// }
-		// 		// else{
-		// 		// 	output += line1[count];
-		// 		// 	count++;
-		// 		// 	rule.innerHTML = output;
-		// 		// }
-		// 	}
-		// }
+			document.addEventListener("keypress", (event) => {
+			    switch (event.keyCode) {
+			    	case 32:
+			    		nhau = setInterval(loopwish, 50);
+			    }
+			});
+
+			function loopwish(){
+				if (line1[count] == ','){
+					output += line1[count];
+					output += '<br>';
+					output += '&nbsp&nbsp&nbsp';
+					count++;
+					rule.innerHTML = output;
+					clearInterval(nhau);
+				}
+				else if (line1[count] == '.' || line1[count] == '?'){
+					output += line1[count];
+					output += '<br>';
+					output += '<br>';
+					count++;
+					rule.innerHTML = output;
+					clearInterval(nhau);
+				}
+				else if (count == line1.length){
+					clearInterval(nhau);
+				}
+				else{
+					output += line1[count];
+					rule.innerHTML = output;
+					count++;
+				}
+			}
+		}
 
 		document.addEventListener("keydown", (event) => {
 		    switch (event.keyCode) {
-		    	case 39:
-		    		snake.dx = 0;
-		    		snake.dy = 1;
-		    		break;
-		    	case 37:
-		    		snake.dx = 0;
-		    		snake.dy = -1;
-		    		break;
-		    	case 38:
-		    		snake.dx = -1;
-		    		snake.dy = 0;
-		    		break;
-		    	case 40:
-		    		snake.dx = 1;
-		    		snake.dy = 0;
-		    		break;
 		    	case 13:
 		    		start();
 		    		break;
 		    }
 		});
-
-		function sleep(milliseconds) {
-		  var start = new Date().getTime();
-		  for (var i = 0; i < 1e7; i++) {
-		    if ((new Date().getTime() - start) > milliseconds){
-		      break;
-		    }
-		  }
-		}
 
 		function start(){
 			rule.innerHTML = '';
