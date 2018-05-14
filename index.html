@@ -210,17 +210,19 @@
 
 		function wish(){
 
-			alert("Press SPACEBAR to continue...");
+
 			var line1 = "Hi Hello. HAPPY BIRTHDAY TO YOU. I know it sounds so awkward, but I couldn't make it on your birthday. This is still a prototype webgame page, so the graphics are too ugly, I know. Just to say, I wanna wish you a happy birthday, I wanna make everything normal as it used to be. I want us, to be friend, again. Of course it's up to your decision. Hope to see your reply soon. Best wishes, Q."
 			quoc.innerHTML = namepoint.innerHTML = point.innerHTML = '';
 			var strlen = line1.length;
 			var count = 0;
 			output = '';
-			
+
+			alert("After you close this textbox, press SPACEBAR to continue...");
 			document.addEventListener("keypress", (event) => {
 			    switch (event.keyCode) {
 			    	case 32:
 			    		nhau = setInterval(loopwish, 50);
+			    		break;
 			    }
 			});
 
